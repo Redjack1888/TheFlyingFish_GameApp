@@ -41,6 +41,6 @@ public class SplashActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         finish();
-        
+
     }
 }
