@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TheFlyingFish</string>
+    <string name="logo">logo</string>
+    <string name="by_alessandro_mana">Alessandro Mana</string>
 </resources>
