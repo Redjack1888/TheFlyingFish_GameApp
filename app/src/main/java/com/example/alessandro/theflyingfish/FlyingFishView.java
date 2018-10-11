@@ -1,6 +1,7 @@
 package com.example.alessandro.theflyingfish;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -9,6 +10,7 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 public class FlyingFishView extends View {
 
@@ -36,6 +38,7 @@ public class FlyingFishView extends View {
     private Paint redPaint = new Paint();
 
     private int score;
+    private int lifeCounter;
 
     private boolean touch = false;
 
@@ -80,6 +83,7 @@ public class FlyingFishView extends View {
 
         // Starting Score
         score = 0;
+        lifeCounter = 3;
 
     }
 
@@ -165,10 +169,17 @@ public class FlyingFishView extends View {
 
             redX = - 100;
 
-            // TODO add a method to decrease 1 Life
+            lifeCounter--;
 
-            // TODO add a method to End the Game if player loose 3 Life
+            if (lifeCounter == 0) {
 
+                Toast.makeText(getContext(), "Game Over", Toast.LENGTH_SHORT).show();
+
+                Intent gameOverIntent = new Intent(getContext(), GameOverActivity.class);
+                gameOverIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                getContext().startActivity(gameOverIntent);
+
+            }
         }
 
         if (redX < 0){
@@ -177,7 +188,6 @@ public class FlyingFishView extends View {
             redY = (int) Math.floor(Math.random() * (maxFishY - minFishY)) + minFishY;
 
         }
-
 
         // Draw Yellow Ball
         canvas.drawCircle(yellowX, yellowY, 25, yellowPaint);
@@ -191,11 +201,22 @@ public class FlyingFishView extends View {
         // Draw Score
         canvas.drawText(getContext().getString(R.string.score_label) + score, 20,60,scorePaint);
 
-        // Draw Life
-        canvas.drawBitmap(life[0],580, 10,null);
-        canvas.drawBitmap(life[0],680, 10,null);
-        canvas.drawBitmap(life[0],780, 10,null);
+        // Loop for Life images
+        for(int i=0; i<3; i++){
 
+            int x = (int) (580 + life[0].getWidth() * 1.5 * i);
+            int y = 30;
+
+            if(i < lifeCounter ){
+
+                canvas.drawBitmap(life[0],x, y,null);
+
+            }else{
+
+                canvas.drawBitmap(life[1],x, y,null);
+
+            }
+        }
     }
 
     // Method to catch Balls
@@ -210,6 +231,7 @@ public class FlyingFishView extends View {
         }
 
         return false;
+        
     }
 
     @Override
