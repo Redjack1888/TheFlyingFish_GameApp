@@ -30,6 +30,11 @@ public class FlyingFishView extends View {
     private int greenSpeed = 20;
     private Paint greenPaint = new Paint();
 
+    private int redX;
+    private int redY;
+    private int redSpeed = 25;
+    private Paint redPaint = new Paint();
+
     private int score;
 
     private boolean touch = false;
@@ -51,6 +56,14 @@ public class FlyingFishView extends View {
         // Yellow ball
         yellowPaint.setColor(Color.YELLOW);
         yellowPaint.setAntiAlias(false);
+
+        // Green ball
+        greenPaint.setColor(Color.GREEN);
+        greenPaint.setAntiAlias(false);
+
+        // Red ball
+        redPaint.setColor(Color.RED);
+        redPaint.setAntiAlias(false);
 
         // Score Text
         scorePaint.setColor(Color.WHITE);
@@ -127,8 +140,53 @@ public class FlyingFishView extends View {
 
         }
 
+        // Green Ball Stats
+        greenX = greenX - greenSpeed;
+
+        if (hitBallChecker(greenX, greenY)){
+
+            // increase score
+            score = score + 20;
+            greenX = - 100;
+
+        }
+
+        if (greenX < 0){
+
+            greenX = canvasWidth + 21;
+            greenY = (int) Math.floor(Math.random() * (maxFishY - minFishY)) + minFishY;
+
+        }
+
+        // Red Ball Stats
+        redX = redX - redSpeed;
+
+        if (hitBallChecker(redX, redY)){
+
+            redX = - 100;
+
+            // TODO add a method to decrease 1 Life
+
+            // TODO add a method to End the Game if player loose 3 Life
+
+        }
+
+        if (redX < 0){
+
+            redX = canvasWidth + 21;
+            redY = (int) Math.floor(Math.random() * (maxFishY - minFishY)) + minFishY;
+
+        }
+
+
         // Draw Yellow Ball
         canvas.drawCircle(yellowX, yellowY, 25, yellowPaint);
+
+        // Draw Green Ball
+        canvas.drawCircle(greenX, greenY, 25, greenPaint);
+
+        // Draw Red Ball
+        canvas.drawCircle(redX, redY, 30, redPaint);
 
         // Draw Score
         canvas.drawText(getContext().getString(R.string.score_label) + score, 20,60,scorePaint);
