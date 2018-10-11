@@ -177,6 +177,7 @@ public class FlyingFishView extends View {
 
                 Intent gameOverIntent = new Intent(getContext(), GameOverActivity.class);
                 gameOverIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                gameOverIntent.putExtra("score", score);
                 getContext().startActivity(gameOverIntent);
 
             }
@@ -188,7 +189,6 @@ public class FlyingFishView extends View {
             redY = (int) Math.floor(Math.random() * (maxFishY - minFishY)) + minFishY;
 
         }
-
 
         // Draw Yellow Ball
         canvas.drawCircle(yellowX, yellowY, 25, yellowPaint);
