@@ -173,7 +173,7 @@ public class FlyingFishView extends View {
 
             if (lifeCounter == 0) {
 
-                Toast.makeText(getContext(), "Game Over", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), "Game Over", Toast.LENGTH_SHORT).show();
 
                 Intent gameOverIntent = new Intent(getContext(), GameOverActivity.class);
                 gameOverIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

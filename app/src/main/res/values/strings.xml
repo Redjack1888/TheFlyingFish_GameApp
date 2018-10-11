@@ -3,4 +3,6 @@
     <string name="logo">logo</string>
     <string name="by_alessandro_mana">Alessandro Mana</string>
     <string name="score_label">Score:</string>
+    <string name="game_over">Game Over</string>
+    <string name="play_again">Play Again</string>
 </resources>
