@@ -189,6 +189,7 @@ public class FlyingFishView extends View {
 
         }
 
+
         // Draw Yellow Ball
         canvas.drawCircle(yellowX, yellowY, 25, yellowPaint);
 
@@ -201,7 +202,7 @@ public class FlyingFishView extends View {
         // Draw Score
         canvas.drawText(getContext().getString(R.string.score_label) + score, 20,60,scorePaint);
 
-        // Loop for Life images
+        // Loop for manage Life images
         for(int i=0; i<3; i++){
 
             int x = (int) (580 + life[0].getWidth() * 1.5 * i);
@@ -231,7 +232,6 @@ public class FlyingFishView extends View {
         }
 
         return false;
-
     }
 
     @Override
